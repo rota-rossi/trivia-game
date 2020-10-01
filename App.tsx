@@ -1,27 +1,35 @@
 import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import {
+  useFonts,
+  Lato_700Bold,
+  Lato_400Regular,
+  Lato_300Light,
+} from '@expo-google-fonts/lato';
+
+import { store, persistor } from './src/store';
+
+import Main from './src/Main';
+import Loading from './src/views/Loading/Loading';
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Lato_700Bold,
+    Lato_400Regular,
+    Lato_300Light,
+  });
+
+  if (!fontsLoaded) return <Loading />;
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your &quot;app!&quot;</Text>
-        <StatusBar style="auto" />
-      </View>
+      <Provider store={store}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
+          <Main />
+        </PersistGate>
+      </Provider>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
