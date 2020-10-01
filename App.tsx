@@ -13,7 +13,7 @@ import {
 import { store, persistor } from './src/store';
 
 import Main from './src/Main';
-import Loading from './src/views/Loading/Loading';
+import Loading from './src/views/Loading';
 
 export default function App() {
   let [fontsLoaded] = useFonts({

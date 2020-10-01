@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { Button } from '../../components/Button';
 import { Container } from '../../components/Container';
-import { Title } from '../../styles/typography';
+import { Title1 } from '../../styles/typography';
 import { FontAwesome } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import { loadQuestions } from '../../store/questions/actionCreators';
@@ -42,7 +42,7 @@ const Intro = () => {
   return (
     <IntroContainer>
       <Image />
-      <Title>Trivia Game</Title>
+      <Title1>Trivia Game</Title1>
       <ButtonContainer>
         <Button backgroundColor="blue" onPress={beginGame}>
           <FontAwesome name="gamepad" size={28} /> Begin game

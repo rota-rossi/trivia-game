@@ -3,10 +3,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { IRootState } from './store/types';
 import Intro from './views/Intro/Intro';
-import Options from './views/Options/Options';
-import Question from './views/Question/Question';
+import Options from './views/Options';
+import Question from './views/Question';
 import { RootStackParamList } from './types';
-import GameEnd from './views/GameEnd/GameEnd';
+import GameEnd from './views/GameEnd';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

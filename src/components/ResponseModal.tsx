@@ -2,7 +2,7 @@ import React, { FC, useEffect, useRef } from 'react';
 import { Modal, Animated } from 'react-native';
 import { CenteredContainer } from './Container';
 import styled from 'styled-components/native';
-import { Title } from '../styles/typography';
+import { Title1 } from '../styles/typography';
 
 const ScreenContainer = styled(CenteredContainer)``;
 
@@ -28,7 +28,7 @@ const ModalContainer = styled.View<{
   border-radius: 20px;
 `;
 
-const ModalText = styled(Title)`
+const ModalText = styled(Title1)`
   color: white;
 `;
 

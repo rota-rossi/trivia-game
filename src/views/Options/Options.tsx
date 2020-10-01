@@ -2,13 +2,8 @@ import React, { FC } from 'react';
 import styled from 'styled-components/native';
 import { CenteredContainer } from '../../components/Container';
 import { Button } from '../../components/Button';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Subtitle } from '../../styles/typography';
 import { Spacer } from '../../components/Spacer';
-import { RootStackParamList } from '../../types';
-import { useDispatch, useSelector } from 'react-redux';
-import { resetToken } from '../../store/session/actionCreators';
-import { IRootState } from '../../store/types';
 
 const OptionsContainer = styled.View`
   padding: 0 32px;
@@ -38,23 +33,4 @@ const OptionsUI: FC<OptionsProp> = (props) => {
   );
 };
 
-type OptionsNavigationProp = NavigationProp<RootStackParamList, 'Options'>;
-
-const Options = () => {
-  const navigation = useNavigation<OptionsNavigationProp>();
-  const token = useSelector<IRootState, string | null>(
-    (state) => state.session.token
-  );
-
-  const dispatch = useDispatch();
-
-  const resetProgress = () => {
-    if (token) {
-      dispatch(resetToken(token));
-    }
-  };
-
-  return <OptionsUI resetProgress={resetProgress} />;
-};
-
-export default Options;
+export default OptionsUI;

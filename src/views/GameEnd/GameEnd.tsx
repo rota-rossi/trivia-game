@@ -1,36 +1,16 @@
 import React, { FC } from 'react';
 import { FlatList } from 'react-native';
 import { Button } from '../../components/Button';
-import {
-  useGameState,
-  useResetGame,
-  useGameSummary,
-} from '../../hooks/gameState';
 import { Container } from '../../components/Container';
-import { Title, Paragraph } from '../../styles/typography';
-import styled from 'styled-components/native';
+import { Title1, Paragraph } from '../../styles/typography';
 import { Spacer } from '../../components/Spacer';
 import SummaryItem from './components/SummaryItem';
 import SummaryHeader from './components/SummaryHeader';
-
-const InnerContainer = styled.View`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-`;
-
-const SummaryContainer = styled.View`
-  flex: 1;
-`;
-
-const ButtonContainer = styled.View`
-  display: flex;
-  width: 100%;
-  height: 70px;
-  justify-content: center;
-  align-items: center;
-`;
+import {
+  InnerContainer,
+  SummaryContainer,
+  ButtonContainer,
+} from './styledComponents';
 
 type Results = {
   questionText: string;
@@ -49,12 +29,14 @@ const GameEndUI: FC<IProps> = (props) => {
   return (
     <Container>
       <InnerContainer>
-        <Title>Game Over</Title>
-        <Spacer size={32} />
+        <Title1>Game Over</Title1>
+        <Spacer size={24} />
         <Paragraph>
           Final Score: {props.score}/{props.totalQuestions}
         </Paragraph>
+        <Spacer size={10} />
         <SummaryContainer>
+          <SummaryHeader />
           <FlatList
             data={props.finalResults}
             renderItem={({ item }) => (
@@ -65,7 +47,6 @@ const GameEndUI: FC<IProps> = (props) => {
               />
             )}
             keyExtractor={(_, index) => index.toString()}
-            ListHeaderComponent={<SummaryHeader />}
           />
         </SummaryContainer>
         <ButtonContainer>
@@ -76,18 +57,4 @@ const GameEndUI: FC<IProps> = (props) => {
   );
 };
 
-const GameEnd = () => {
-  const { totalQuestions, score } = useGameState();
-  const finalResults = useGameSummary();
-  const returnToMenu = useResetGame();
-  return (
-    <GameEndUI
-      score={score}
-      totalQuestions={totalQuestions}
-      returnToMenu={returnToMenu}
-      finalResults={finalResults}
-    />
-  );
-};
-
-export default GameEnd;
+export default GameEndUI;
